@@ -31,14 +31,16 @@ static DialogMessageButton about_screen_product(DialogsApp* dialogs, DialogMessa
         furi_hal_version_get_ic_id());
     */
 
+    FuriString* screen_text = furi_string_alloc_printf("From Tallinn with love <3");
+
     dialog_message_set_header(
         message, furi_string_get_cstr(screen_header), 0, 0, AlignLeft, AlignTop);
-    // dialog_message_set_text(
-    //     message, furi_string_get_cstr(screen_text), 0, 26, AlignLeft, AlignTop);
+    dialog_message_set_text(
+        message, furi_string_get_cstr(screen_text), 0, 26, AlignLeft, AlignTop);
     result = dialog_message_show(dialogs, message);
 
     furi_string_free(screen_header);
-    // furi_string_free(screen_text);
+    furi_string_free(screen_text);
 
     return result;
 }
