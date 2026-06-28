@@ -23,11 +23,13 @@ static DialogMessageButton about_screen_product(DialogsApp* dialogs, DialogMessa
         furi_hal_version_get_model_name(),
         furi_hal_version_get_model_code());
 
+    /*
     FuriString* screen_text = furi_string_alloc_printf(
         "FCC ID: %s\n"
         "IC: %s",
         furi_hal_version_get_fcc_id(),
         furi_hal_version_get_ic_id());
+    */
 
     dialog_message_set_header(
         message, furi_string_get_cstr(screen_header), 0, 0, AlignLeft, AlignTop);
@@ -40,6 +42,8 @@ static DialogMessageButton about_screen_product(DialogsApp* dialogs, DialogMessa
 
     return result;
 }
+
+/*
 
 static DialogMessageButton about_screen_address(DialogsApp* dialogs, DialogMessage* message) {
     DialogMessageButton result;
@@ -128,6 +132,8 @@ static DialogMessageButton about_screen_cert_mexico(DialogsApp* dialogs, DialogM
     return result;
 }
 
+*/
+
 static DialogMessageButton about_screen_hw_version(DialogsApp* dialogs, DialogMessage* message) {
     DialogMessageButton result;
     FuriString* buffer;
@@ -206,6 +212,7 @@ const AboutDialogScreen about_screens[] = {
     about_screen_product,
     about_screen_hw_version,
     about_screen_fw_version,
+    /*
     about_screen_compliance,
     about_screen_address,
     about_screen_icon1,
@@ -214,6 +221,7 @@ const AboutDialogScreen about_screens[] = {
     about_screen_cert_china_1,
     about_screen_cert_taiwan,
     about_screen_cert_mexico,
+    */
 };
 
 int32_t about_settings_app(void* p) {
