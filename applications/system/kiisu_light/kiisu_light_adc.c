@@ -47,8 +47,7 @@ static void
     *sample_rate_hz_out = (seconds > 0.0f) ? ((float)n / seconds) : 0.0f;
 }
 
-static void
-    analyze(const uint16_t* buf, size_t n, float sample_rate_hz, Reading* out) {
+static void analyze(const uint16_t* buf, size_t n, float sample_rate_hz, Reading* out) {
     uint16_t vmin = 0xFFFF, vmax = 0;
     uint64_t sum = 0;
     for(size_t i = 0; i < n; i++) {
@@ -183,7 +182,8 @@ int32_t kiisu_light_adc_main(void* p) {
 
         /* DC level from the burst mean — more stable than a single sample */
         uint64_t sum = 0;
-        for(size_t i = 0; i < BURST_SAMPLES; i++) sum += burst[i];
+        for(size_t i = 0; i < BURST_SAMPLES; i++)
+            sum += burst[i];
         uint16_t mean_raw = (uint16_t)(sum / BURST_SAMPLES);
         reading.light_mv = furi_hal_adc_convert_to_voltage(adc, mean_raw);
         float pct = 100.0f - (reading.light_mv / LIGHT_FULL_SCALE * 100.0f);
@@ -191,8 +191,8 @@ int32_t kiisu_light_adc_main(void* p) {
         if(pct > 100.0f) pct = 100.0f;
         reading.light_percent = pct;
 
-        reading.temp_c = furi_hal_adc_convert_temp(
-            adc, furi_hal_adc_read(adc, FuriHalAdcChannelTEMPSENSOR));
+        reading.temp_c =
+            furi_hal_adc_convert_temp(adc, furi_hal_adc_read(adc, FuriHalAdcChannelTEMPSENSOR));
 
         view_port_update(view_port);
     }

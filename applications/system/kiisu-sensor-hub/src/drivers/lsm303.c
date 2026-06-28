@@ -92,29 +92,42 @@ void lsm303_init(Lsm303* dev, I2cBus* bus, bool mock) {
 
 static bool read_acc(Lsm303* dev, int16_t* ax, int16_t* ay, int16_t* az) {
     if(dev->mock) {
-        *ax = 100; *ay = 0; *az = 16384; return true;
+        *ax = 100;
+        *ay = 0;
+        *az = 16384;
+        return true;
     }
     uint8_t reg = 0x28 | 0x80; // auto-increment from OUT_X_L_A
     uint8_t raw[6];
-    if(!i2c_read_reg(dev->bus, LSM303_ADDR_ACC, reg, raw, 6)) { FURI_LOG_W("LSM303","ACC read fail"); return false; }
+    if(!i2c_read_reg(dev->bus, LSM303_ADDR_ACC, reg, raw, 6)) {
+        FURI_LOG_W("LSM303", "ACC read fail");
+        return false;
+    }
     // In HR mode, output is left-justified 12-bit. Cast first, then arithmetic shift by 4 to preserve sign.
     *ax = (int16_t)((raw[1] << 8) | raw[0]);
     *ay = (int16_t)((raw[3] << 8) | raw[2]);
     *az = (int16_t)((raw[5] << 8) | raw[4]);
-    *ax >>= 4; *ay >>= 4; *az >>= 4;
+    *ax >>= 4;
+    *ay >>= 4;
+    *az >>= 4;
     return true;
 }
 
 static bool read_mag(Lsm303* dev, int16_t* mx, int16_t* my, int16_t* mz) {
-    if(dev->mock) { *mx = 0; *my = 0; *mz = 500; return true; }
+    if(dev->mock) {
+        *mx = 0;
+        *my = 0;
+        *mz = 500;
+        return true;
+    }
     // LSM303AGR magnetic output registers start at 0x68: X_L, X_H, Y_L, Y_H, Z_L, Z_H
     // Set MSB of subaddress to enable auto-increment on I2C
     uint8_t raw[6];
     if(!i2c_read_reg(dev->bus, LSM303_ADDR_MAG, (uint8_t)(0x68 | 0x80), raw, 6)) {
         FURI_LOG_W("LSM303", "MAG read fail");
-    // Try once to reconfigure and read again
-    (void)lsm303_hw_init(dev);
-    if(!i2c_read_reg(dev->bus, LSM303_ADDR_MAG, (uint8_t)(0x68 | 0x80), raw, 6)) return false;
+        // Try once to reconfigure and read again
+        (void)lsm303_hw_init(dev);
+        if(!i2c_read_reg(dev->bus, LSM303_ADDR_MAG, (uint8_t)(0x68 | 0x80), raw, 6)) return false;
     }
     *mx = (int16_t)((raw[1] << 8) | raw[0]);
     *my = (int16_t)((raw[3] << 8) | raw[2]);
@@ -123,7 +136,10 @@ static bool read_mag(Lsm303* dev, int16_t* mx, int16_t* my, int16_t* mz) {
 }
 
 static bool read_temp_degC(Lsm303* dev, float* temp_c_out) {
-    if(dev->mock) { *temp_c_out = 30.0f; return true; }
+    if(dev->mock) {
+        *temp_c_out = 30.0f;
+        return true;
+    }
     // OUT_TEMP_H_A is at 0x0D, OUT_TEMP_L_A at 0x0C (accelerometer bank)
     // Many ST MEMS map temperature as 8-bit in OUT_TEMP_H with 1 LSB/degC and 0 at 25°C
     uint8_t t_h = 0;
@@ -141,10 +157,16 @@ bool lsm303_poll(Lsm303* dev, Lsm303Sample* out) {
     out->ts = furi_hal_rtc_get_timestamp();
     if(!dev->inited) {
         dev->inited = lsm303_hw_init(dev);
-        if(!dev->inited) { dev->error_count++; return false; }
+        if(!dev->inited) {
+            dev->error_count++;
+            return false;
+        }
     }
     int16_t ax, ay, az, mx = 0, my = 0, mz = 0;
-    if(!read_acc(dev, &ax, &ay, &az)) { dev->error_count++; return false; }
+    if(!read_acc(dev, &ax, &ay, &az)) {
+        dev->error_count++;
+        return false;
+    }
     bool mag_ok = false;
     if(dev->has_mag) {
         mag_ok = read_mag(dev, &mx, &my, &mz);
@@ -184,13 +206,16 @@ bool lsm303_set_hardiron_offsets_uT(Lsm303* dev, float off_x_uT, float off_y_uT,
     int16_t oz = (int16_t)roundf(off_z_uT / 0.15f);
     uint8_t buf[2];
     // OFFSET_X_REG_L_M (0x45), H (0x46)
-    buf[0] = (uint8_t)(ox & 0xFF); buf[1] = (uint8_t)((ox >> 8) & 0xFF);
+    buf[0] = (uint8_t)(ox & 0xFF);
+    buf[1] = (uint8_t)((ox >> 8) & 0xFF);
     if(!i2c_write_reg(dev->bus, LSM303_ADDR_MAG, 0x45, buf, 2)) return false;
     // OFFSET_Y
-    buf[0] = (uint8_t)(oy & 0xFF); buf[1] = (uint8_t)((oy >> 8) & 0xFF);
+    buf[0] = (uint8_t)(oy & 0xFF);
+    buf[1] = (uint8_t)((oy >> 8) & 0xFF);
     if(!i2c_write_reg(dev->bus, LSM303_ADDR_MAG, 0x47, buf, 2)) return false;
     // OFFSET_Z
-    buf[0] = (uint8_t)(oz & 0xFF); buf[1] = (uint8_t)((oz >> 8) & 0xFF);
+    buf[0] = (uint8_t)(oz & 0xFF);
+    buf[1] = (uint8_t)((oz >> 8) & 0xFF);
     if(!i2c_write_reg(dev->bus, LSM303_ADDR_MAG, 0x49, buf, 2)) return false;
     return true;
 }

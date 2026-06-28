@@ -23,7 +23,7 @@ typedef struct {
 typedef struct {
     float ax, ay, az; // m/s^2 or g
     float mx, my, mz; // uT
-    float temp_c;     // Accelerometer die temperature (approx, deg C)
+    float temp_c; // Accelerometer die temperature (approx, deg C)
     uint32_t ts;
     bool ok;
 } Lsm303Sample;

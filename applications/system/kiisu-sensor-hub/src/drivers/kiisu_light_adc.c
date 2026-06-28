@@ -2,9 +2,9 @@
 #include <furi_hal.h>
 #include <furi_hal_gpio.h>
 
-#define KIISU_LIGHT_ADC_PIN gpio_ext_pc3
+#define KIISU_LIGHT_ADC_PIN     gpio_ext_pc3
 #define KIISU_LIGHT_ADC_CHANNEL FuriHalAdcChannel4
-#define KIISU_LIGHT_ADC_MAX_MV 1187.0f
+#define KIISU_LIGHT_ADC_MAX_MV  1187.0f
 
 static bool adc_inited = false;
 

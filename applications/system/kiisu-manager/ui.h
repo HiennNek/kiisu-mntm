@@ -15,4 +15,10 @@ VariableItemList* kiisu_ui_get_list(KiisuUi* ui);
 Popup* kiisu_ui_get_popup(KiisuUi* ui);
 
 void kiisu_ui_show_list(KiisuUi* ui);
-void kiisu_ui_show_popup(KiisuUi* ui, const char* title, const char* text, uint32_t ms, KiisuUiOnExit cb, void* ctx);
+void kiisu_ui_show_popup(
+    KiisuUi* ui,
+    const char* title,
+    const char* text,
+    uint32_t ms,
+    KiisuUiOnExit cb,
+    void* ctx);

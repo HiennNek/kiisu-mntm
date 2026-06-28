@@ -15,8 +15,8 @@ extern "C" {
 // Registers
 typedef enum {
     REG_LED_BRIGHTNESS = 0x00, // 0=Auto, else 5..100 step 5
-    REG_AUTO_POWEROFF  = 0x01, // 0..7 per spec
-    REG_STARTUP_COLOR  = 0x02, // 0..8 per spec
+    REG_AUTO_POWEROFF = 0x01, // 0..7 per spec
+    REG_STARTUP_COLOR = 0x02, // 0..8 per spec
     REG_CHARGE_RAINBOW = 0x03, // 0/1
 } KiisuReg;
 

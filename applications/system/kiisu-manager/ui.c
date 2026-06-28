@@ -32,12 +32,24 @@ void kiisu_ui_free(KiisuUi* ui) {
     free(ui);
 }
 
-VariableItemList* kiisu_ui_get_list(KiisuUi* ui) { return ui->list; }
-Popup* kiisu_ui_get_popup(KiisuUi* ui) { return ui->popup; }
+VariableItemList* kiisu_ui_get_list(KiisuUi* ui) {
+    return ui->list;
+}
+Popup* kiisu_ui_get_popup(KiisuUi* ui) {
+    return ui->popup;
+}
 
-void kiisu_ui_show_list(KiisuUi* ui) { view_dispatcher_switch_to_view(ui->vd, 0); }
+void kiisu_ui_show_list(KiisuUi* ui) {
+    view_dispatcher_switch_to_view(ui->vd, 0);
+}
 
-void kiisu_ui_show_popup(KiisuUi* ui, const char* title, const char* text, uint32_t ms, KiisuUiOnExit cb, void* ctx) {
+void kiisu_ui_show_popup(
+    KiisuUi* ui,
+    const char* title,
+    const char* text,
+    uint32_t ms,
+    KiisuUiOnExit cb,
+    void* ctx) {
     popup_reset(ui->popup);
     if(title) popup_set_header(ui->popup, title, 64, 10, AlignCenter, AlignTop);
     if(text) popup_set_text(ui->popup, text, 64, 32, AlignCenter, AlignCenter);

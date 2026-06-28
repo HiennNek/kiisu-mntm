@@ -88,7 +88,12 @@ void gxhtc3c_init(Gxhtc3c* dev, I2cBus* bus, bool mock) {
 bool gxhtc3c_poll(Gxhtc3c* dev, Gxhtc3cSample* out) {
     out->ok = false;
     out->ts = furi_hal_rtc_get_timestamp();
-    if(dev->mock) { out->temperature_c = 25.0f; out->humidity_rh = 45.0f; out->ok = true; return true; }
+    if(dev->mock) {
+        out->temperature_c = 25.0f;
+        out->humidity_rh = 45.0f;
+        out->ok = true;
+        return true;
+    }
     if(!dev->inited) dev->inited = true;
     uint8_t raw[6];
     // wake and measure
