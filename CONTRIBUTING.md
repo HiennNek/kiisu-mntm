@@ -1,1 +1,1 @@
-### AI is allowed in this repository, but must follow the rules from `AGENTS.md`
+### AI is allowed in this repository, but must follow the rules in `AGENTS.md`
