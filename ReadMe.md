@@ -1,7 +1,7 @@
 # Kiisu-MNTM
 ### Momentum firmware fork for Kiisu v4b/v4br - with U2F and rolling code support
 
-> **Note:** Kiisu-MNTM is **not** an official Momentum branch. It is a separate community fork of [Momentum FW](https://github.com/Next-Flip/Momentum-Firmware) for Kiisu.
+> **Note:** Kiisu-MNTM is a community fork of [Momentum FW](https://github.com/Next-Flip/momentum-firmware) for Kiisu.
 
 ## Why choose this over other forks?
 
@@ -9,7 +9,7 @@
 
 - **Rolling code & U2F support** - Includes rolling code and U2F support for Kiisu. The firmware covers most rolling code manufacturers from upstream Momentum, but not all. If you find a missing manufacturer key, please [contribute here](https://github.com/HiennNek/non-flipper-rolling-code-support#-missing-keys).
 
-- **Kiisu assets** - Replaces all Flipper assets with Kiisu branding, unlike the Momentum Kiisu branch or stock Kiisu FW. The original Kiisu assets had minor visual issues (noise, low-res images); this firmware ships with fixed assets redrawn by hand. Found something missing? [Open an issue](https://github.com/HiennNek/kiisu-mntm/issues).
+- **Kiisu assets** - Replaces all Flipper assets with Kiisu branding. Also, the original Kiisu assets had minor visual issues (noise, low-res images); this firmware ships with fixed assets redrawn by hand. Found something missing? [Open an issue](https://github.com/HiennNek/kiisu-mntm/issues).
 
 ## How to install
 
@@ -22,8 +22,8 @@
 Clone the repository:
 
 ```bash
-git clone --recursive --jobs 8 https://github.com/Next-Flip/Momentum-Firmware.git
-cd Momentum-Firmware/
+git clone --recursive --jobs 8 https://github.com/HiennNek/kiisu-mntm.git
+cd kiisu-mntm/
 ```
 
 Flash directly to the Flipper (device must be connected via USB with qFlipper closed):
@@ -48,12 +48,47 @@ Build and launch a single app:
 
 > Don't see your question answered here? [Open an issue](https://github.com/HiennNek/kiisu-mntm/issues).
 
+### Common issues
+<details>
+<summary><b>Screen glitching after installation</b></summary>
+Just restart your Kiisu.
+</details>
+<details>
+<summary><b>Things broke after switching from other firmware</b></summary>
+
+Delete all files from your SD card (you can still keep captured files/downloaded DB files), then reflash the firmware.
+
+If you can't flash the firmware using the normal way, try flashing it with DFU mode. (Turn off Kiisu, then hold the `OK` button and plug your Kiisu into your PC. qFlipper and lab.flipper.net will recognize it as DFU mode.)
+
+You can find the DFU file in the latest [releases](https://github.com/HiennNek/kiisu-mntm/releases).
+</details>
+<details>
+<summary><b>Why doesn't U2F work?</b></summary>
+Try deleting all files in <code>SD Card/u2f/</code>. It will regenerate all cert files.
+If it still doesn't work, then you're using an older version of Kiisu that doesn't ship with Kiisu's secret keys.
+</details>
+<details>
+<summary><b>Why can't Sub-GHz copy my remote?</b></summary>
+Your remote might not be supported by the upstream firmware.
+If you believe your remote is supported by upstream, check <a href="https://github.com/HiennNek/non-flipper-rolling-code-support#-missing-keys">non-flipper-rolling-code-support</a>.
+Or <a href="https://github.com/HiennNek/kiisu-mntm/issues">open an issue</a>.
+</details>
+<details>
+<summary><b>Windows Defender flags the firmware as a virus</b></summary>
+
+~~Use Linux~~
+
+Windows Defender uses AI to scan and detect malware, which might create a false positive.
+
+Try using VirusTotal if you don't trust it.
+</details>
+
 ### General
 
 <details>
 <summary><b>What is Kiisu-MNTM?</b></summary>
 
-Kiisu-MNTM is a community-maintained fork of [Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware) built specifically for the Kiisu device. It adds rolling code and U2F support that aren't available in official Flipper firmware on Kiisu hardware, ships hand-redrawn Kiisu-branded assets, and stays continuously synced with upstream Momentum plus the latest Kiisu-specific tweaks and apps.
+Kiisu-MNTM is a community-maintained fork of [Momentum Firmware](https://github.com/Next-Flip/momentum-firmware) built specifically for the Kiisu device. It adds rolling code and U2F support that aren't available in official Flipper firmware on Kiisu hardware, ships hand-redrawn Kiisu-branded assets, and stays continuously synced with upstream Momentum plus the latest Kiisu-specific tweaks and apps.
 
 </details>
 
@@ -69,7 +104,7 @@ No. Kiisu-MNTM is **not** an official Momentum branch, and it isn't the stock Ki
 <details>
 <summary><b>How do I install Kiisu-MNTM?</b></summary>
 
-Download the latest `flipper-z-f7-update-mntm-dev-XXXXXXXX.tgz` from the [Releases](https://github.com/HiennNek/kiisu-mntm/releases) page, then open **qFlipper** or [lab.flipper.net](https://lab.flipper.net/), choose **Install from file**, and select the downloaded file.
+See above
 
 </details>
 
@@ -83,7 +118,7 @@ Yes - switching is just a matter of flashing a different firmware file the same 
 <details>
 <summary><b>How often is it updated?</b></summary>
 
-It's actively maintained and kept in sync with upstream Momentum Firmware. Check the [Releases](https://github.com/HiennNek/kiisu-mntm/releases) page for the latest build.
+Weekly. Check the [Releases](https://github.com/HiennNek/kiisu-mntm/releases) page for the latest build.
 
 </details>
 
@@ -113,7 +148,7 @@ You can contribute the missing manufacturer key at the companion repo: [non-flip
 <details>
 <summary><b>What is U2F, and why didn't it work before?</b></summary>
 
-U2F (Universal 2nd Factor) is a hardware authentication standard used for two-factor login. Like rolling code, some U2F functionality needs factory keys that Kiisu hardware lacks - Kiisu-MNTM adds its own support so U2F works on Kiisu.
+U2F (Universal 2nd Factor) is a hardware authentication standard used for two-factor login. Like rolling code, U2F functionality needs certification that other firmware doesn't ship with - Kiisu-MNTM adds its own support (cert generation) so U2F works on Kiisu.
 
 </details>
 
@@ -132,7 +167,12 @@ All visuals are Kiisu-branded rather than Flipper-branded, and the original Kiis
 Kiisu-MNTM brings Momentum's broader feature set on top of Kiisu, stays actively synced with upstream, and includes the hand-corrected assets - none of which are part of stock Kiisu firmware.
 
 </details>
+<details>
+<summary><b>How is this different from the official Momentum Kiisu branch?</b></summary>
 
+The official Momentum Kiisu branch doesn't include the hand-redrawn Kiisu assets that Kiisu-MNTM ships with - it still has the original assets' minor visual issues (noise, low-res). Kiisu-MNTM also tracks upstream Momentum closely to stay current.
+
+</details>
 <details>
 <summary><b>How is this different from the official Momentum Kiisu branch?</b></summary>
 
