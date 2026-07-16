@@ -88,7 +88,7 @@ Try using VirusTotal if you don't trust it.
 <details>
 <summary><b>What is Kiisu-MNTM?</b></summary>
 
-Kiisu-MNTM is a community-maintained fork of [Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware) built specifically for the Kiisu device. It adds rolling code and U2F support that aren't available in official Flipper firmware on Kiisu hardware, ships hand-redrawn Kiisu-branded assets, and stays continuously synced with upstream Momentum plus the latest Kiisu-specific tweaks and apps.
+Kiisu-MNTM is a community-maintained fork of [Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware) built specifically for the Kiisu device. It adds rolling code and U2F support that aren't available in official Momentum firmware on Kiisu hardware, ships hand-redrawn Kiisu-branded assets, and stays continuously synced with upstream Momentum plus the latest Kiisu-specific tweaks and apps.
 
 </details>
 
