@@ -13,7 +13,7 @@
 
 ## How to install
 
-1. Download **`flipper-z-f7-update-mntm-dev-XXXXXXXX.tgz`** from [Releases](https://github.com/HiennNek/kiisu-mntm/releases)
+1. Download **`kiisu-mntm_XXXXXXXX_dd-MM-yyyy.tgz`** from [Releases](https://github.com/HiennNek/kiisu-mntm/releases)
 2. Open **qFlipper** or visit [lab.flipper.net](https://lab.flipper.net/)
 3. Select **Install from file** and choose the downloaded file
 
@@ -58,7 +58,7 @@ Just restart your Kiisu.
 
 Delete all files from your SD card (you can still keep captured files/downloaded DB files), then reflash the firmware.
 
-If you can't flash the firmware using the normal way, try flashing it with DFU mode. (Turn off Kiisu, then hold the `OK` button and plug your Kiisu into your PC. qFlipper and lab.flipper.net will recognize it as DFU mode.)
+If you can't flash the firmware using the normal way, try flashing it in DFU mode. (Turn off Kiisu, then hold the `OK` button and plug your Kiisu into your PC. qFlipper and lab.flipper.net will recognize it as DFU mode.)
 
 You can find the DFU file in the latest [releases](https://github.com/HiennNek/kiisu-mntm/releases).
 </details>
@@ -69,7 +69,7 @@ If it still doesn't work, then you're using an older version of Kiisu that doesn
 </details>
 <details>
 <summary><b>Why can't Sub-GHz copy my remote?</b></summary>
-Your remote might not be supported by the upstream firmware.
+The upstream firmware might not support your remote.
 If you believe your remote is supported by upstream, check <a href="https://github.com/HiennNek/non-flipper-rolling-code-support#-missing-keys">non-flipper-rolling-code-support</a>.
 Or <a href="https://github.com/HiennNek/kiisu-mntm/issues">open an issue</a>.
 </details>
