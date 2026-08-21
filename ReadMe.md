@@ -88,7 +88,7 @@ Try using VirusTotal if you don't trust it.
 <details>
 <summary><b>What is Kiisu-MNTM?</b></summary>
 
-Kiisu-MNTM is a community-maintained fork of [Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware) built specifically for the Kiisu device. It adds rolling code and U2F support that aren't available in official Momentum firmware on Kiisu hardware, ships hand-redrawn Kiisu-branded assets, and stays continuously synced with upstream Momentum plus the latest Kiisu-specific tweaks and apps.
+Kiisu-MNTM is a community-maintained fork of [Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware) built specifically for the Kiisu device. It adds rolling code and U2F support that aren't available in the official Momentum firmware on Kiisu hardware, ships hand-redrawn Kiisu-branded assets, and stays continuously synced with upstream Momentum plus the latest Kiisu-specific tweaks and apps.
 
 </details>
 
@@ -148,7 +148,7 @@ You can contribute the missing manufacturer key at the companion repo: [non-flip
 <details>
 <summary><b>What is U2F, and why didn't it work before?</b></summary>
 
-U2F (Universal 2nd Factor) is a hardware authentication standard used for two-factor login. Like rolling code, U2F functionality needs certification that other firmware doesn't ship with - Kiisu-MNTM adds its own support (cert generation) so U2F works on Kiisu.
+U2F (Universal 2nd Factor) is a hardware authentication standard used for two-factor login. Like rolling code, U2F functionality needs certification that other firmware doesn't ship with - Kiisu-MNTM adds its own support (certificate generation, pulled from official Kiisu FW), so U2F works on Kiisu.
 
 </details>
 
