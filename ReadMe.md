@@ -13,9 +13,22 @@
 
 ## How to install
 
+### Option #1: Using web installer (recommended)
+
+1. Visit [kiisu-web-updater.pages.dev](https://kiisu-web-updater.pages.dev/)
+3. Choose `Momentum (Kiisu-MNTM)`
+4. Select `INSTALL` (or `UPDATE`)
+
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/c6ecddca-bb80-43fb-966c-23a9f24c7659" />
+
+<details>
+<summary> <h3> Option #2: Using Flipper Lab/qFlipper <h3> </summary>
+
 1. Download **`kiisu-mntm_XXXXXXXX_dd-MM-yyyy.tgz`** from [Releases](https://github.com/HiennNek/kiisu-mntm/releases)
 2. Open **qFlipper** or visit [lab.flipper.net](https://lab.flipper.net/)
 3. Select **Install from file** and choose the downloaded file
+
+</details>
 
 ## How to build
 
